@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { v2 as cloudinary, UploadStream } from "cloudinary"
+import { v2 as cloudinary } from "cloudinary"
 import { auth } from "@clerk/nextjs/server"
 
 cloudinary.config({
@@ -8,7 +8,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-interface CloudinaryUploadResult {
+export interface CloudinaryUploadResult {
     public_id: string
     [key: string]: any
 }
