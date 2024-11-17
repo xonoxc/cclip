@@ -14,10 +14,10 @@ datasource db {
 }
 
 model Video {
-    id             String   @id @default(cuid())
+    id             String   @id @unique @default(cuid())
     title          String
     description    String?
-    publicId       String
+    publicId       String   @unique
     originalSize   String
     compressedSize String
     duration       String
