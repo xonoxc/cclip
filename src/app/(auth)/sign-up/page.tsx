@@ -71,7 +71,6 @@ export default function SignUp() {
         if (!isLoaded) return
 
         try {
-            console.log("before sending...")
             const completeSignUp = await signUp.attemptEmailAddressVerification(
                 {
                     code,
@@ -97,7 +96,12 @@ export default function SignUp() {
             <Card className="w-full max-w-md bg-black text-white border-none">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center">
-                        Sign Up for <Logo />
+                        <div className="w-full  mt-3 flex items-center justify-center">
+                            <Logo className="text-4xl" />
+                        </div>
+                        <div className="flex items-center justify-center  text-md text-[#cccccc]">
+                            Create an account
+                        </div>
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -109,6 +113,7 @@ export default function SignUp() {
                                     type="email"
                                     id="email"
                                     value={credentials.emailAddress}
+                                    className="rounded-xl"
                                     onChange={(e) =>
                                         setCredentials((prev) => ({
                                             ...prev,
@@ -127,6 +132,7 @@ export default function SignUp() {
                                         }
                                         id="password"
                                         value={credentials.password}
+                                        className="rounded-xl"
                                         onChange={(e) =>
                                             setCredentials((prev) => ({
                                                 ...prev,
@@ -157,7 +163,7 @@ export default function SignUp() {
                             )}
                             <Button
                                 type="submit"
-                                className="w-full rounded-lg bg-white text-black"
+                                className="w-full rounded-lg bg-white text-black rounded-xl font-bold"
                             >
                                 Sign Up
                             </Button>
@@ -190,7 +196,7 @@ export default function SignUp() {
                         Already have an account?{" "}
                         <Link
                             href="/sign-in"
-                            className="font-medium text-primary hover:underline"
+                            className="font-medium text-purple-500 hover:underline"
                         >
                             Sign in
                         </Link>

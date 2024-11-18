@@ -72,7 +72,12 @@ export default function SignIn() {
             <Card className="w-full max-w-md border-none bg-black text-white">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center">
-                        Sign In to <Logo />
+                        <div className="w-full  mt-3 flex items-center justify-center">
+                            <Logo className="text-4xl" />
+                        </div>
+                        <div className="flex items-center justify-center  text-xm text-[#cccccc]">
+                            Welcome back!
+                        </div>
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -83,6 +88,7 @@ export default function SignIn() {
                                 type="email"
                                 id="email"
                                 value={credentials.emailAddress}
+                                className="rounded-xl"
                                 onChange={(e) =>
                                     setCredentials((prev) => ({
                                         ...prev,
@@ -99,6 +105,7 @@ export default function SignIn() {
                                     type={showPassword ? "text" : "password"}
                                     id="password"
                                     value={credentials.password}
+                                    className="rounded-xl"
                                     onChange={(e) =>
                                         setCredentials((prev) => ({
                                             ...prev,
@@ -129,7 +136,7 @@ export default function SignIn() {
                         )}
                         <Button
                             type="submit"
-                            className="w-full bg-white text-black font-bold"
+                            className="w-full bg-white text-black font-bold rounded-xl"
                         >
                             Sign In
                         </Button>
@@ -140,7 +147,7 @@ export default function SignIn() {
                         Don&apos;t have an account?{" "}
                         <Link
                             href="/sign-up"
-                            className="font-medium text-primary hover:underline text-white"
+                            className="font-medium  hover:underline text-purple-500"
                         >
                             Sign up
                         </Link>
