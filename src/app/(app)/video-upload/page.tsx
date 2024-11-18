@@ -22,6 +22,7 @@ export default function VideoUpload() {
     const MAX_FILE_SIZE = 70 * 1024 * 1024
 
     const handleSubmit = useCallback(async (e: React.FormEvent) => {
+        console.log("button clicked!")
         e.preventDefault()
         if (!file) return
 
@@ -147,14 +148,11 @@ export default function VideoUpload() {
                         )}
                         <Button
                             type="submit"
-                            className="w-full bg-white text-black font-bold"
+                            className="w-full bg-white text-black font-bold hover:bg-white  disabled:bg-gray-50 disabled:text-black"
                             disabled={isUploading}
                         >
                             {isUploading ? (
-                                <>
-                                    <Upload className="mr-2 h-4 w-4 animate-spin" />
-                                    Uploading...
-                                </>
+                                <>Uploading...</>
                             ) : (
                                 <>
                                     <Upload className="mr-2 h-4 w-4" />

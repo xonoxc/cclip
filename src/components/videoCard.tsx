@@ -143,7 +143,7 @@ export default function VideoCard({
                 </p>
                 {video.compressedSize.toString() !== "undefined" ? (
                     <>
-                        <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+                        <div className="grid grid-cols-2 gap-4 text-sm mb-4 text-white">
                             <TooltipProvider>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
@@ -189,7 +189,7 @@ export default function VideoCard({
                                 </Tooltip>
                             </TooltipProvider>
                         </div>
-                        <div className="space-y-2">
+                        <div className="space-y-2 text-white">
                             <div className="flex justify-between text-sm">
                                 <span>Compression</span>
                                 <span className="font-medium">

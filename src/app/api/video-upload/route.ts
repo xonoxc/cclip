@@ -37,6 +37,13 @@ export async function POST(request: NextRequest) {
 
         const formData = await request.formData()
         const file = formData.get("file") as File | null
+
+        if (!file)
+            return NextResponse.json(
+                { error: "File not found" },
+                { status: 400 }
+            )
+
         const title = formData.get("title") as string
         const description = formData.get("description") as string
         const originalSize = formData.get("originalSize") as string
@@ -51,7 +58,7 @@ export async function POST(request: NextRequest) {
                         resource_type: "video",
                         folder: "cclip",
                         transformation: [
-                            { quality: "auto", fetch_format: "mp4" },
+                            { quality: "auto:eco", fetch_format: "mp4" },
                         ],
                     },
                     (error, result) => {
@@ -69,7 +76,7 @@ export async function POST(request: NextRequest) {
                 description,
                 publicId: result.public_id,
                 originalSize: originalSize,
-                compressedSize: String(result.compressedSize),
+                compressedSize: String(result.bytes),
                 duration: String(result.duration || 0),
             },
         })

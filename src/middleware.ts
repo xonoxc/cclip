@@ -8,8 +8,6 @@ const isPublicApiRoute = createRouteMatcher(["/api/videos"])
 export default clerkMiddleware((auth, req) => {
     const { userId } = auth()
 
-    console.log("userID", userId)
-
     const currentUrl = new URL(req.url)
     const isDashboardAccess = currentUrl.pathname === "/home"
     const isApiRequest = currentUrl.pathname.startsWith("/api")
