@@ -163,7 +163,7 @@ export default function SignUp() {
                             )}
                             <Button
                                 type="submit"
-                                className="w-full rounded-lg bg-white text-black rounded-xl font-bold"
+                                className="w-full  bg-white text-black rounded-xl font-bold"
                             >
                                 Sign Up
                             </Button>

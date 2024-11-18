@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 import "./globals.css"
 import { ClerkProvider } from "@clerk/nextjs"
 import { ThemeProvider } from "next-themes"
 import { dark } from "@clerk/themes"
 
-const inter = Inter({ subsets: ["latin"] })
+const sfPro = localFont({
+    src: "../../public/fonts/sfPro.woff2",
+})
 
 export const metadata: Metadata = {
     title: "cclip",
@@ -19,7 +21,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body className={sfPro.className}>
                 <ThemeProvider defaultTheme="dark">
                     <ClerkProvider
                         appearance={{
