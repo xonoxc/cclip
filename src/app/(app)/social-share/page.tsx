@@ -153,7 +153,7 @@ export default function SocialShare() {
                                     </h3>
                                     <div className="flex justify-center">
                                         {isTransforming && (
-                                            <div className="absolute inset-0 flex items-center justify-center bg-base-100 bg-opacity-50 z-10">
+                                            <div className="absolute inset-0 flex items-center justify-center bg-base-100 bg-opacity-50 z-10 top-6">
                                                 <span className="loading loading-spinner loading-lg"></span>
                                             </div>
                                         )}

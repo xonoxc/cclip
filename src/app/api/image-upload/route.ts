@@ -18,6 +18,8 @@ export async function POST(request: NextRequest) {
     }
 
     try {
+        await cloudinary.api.delete_resources_by_prefix("cclip/")
+
         const formData = await request.formData()
         const file = (formData.get("file") as File) || null
 
