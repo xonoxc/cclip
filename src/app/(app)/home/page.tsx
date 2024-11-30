@@ -51,8 +51,8 @@ export default function Home() {
                 })
 
                 if (deleteResponse.status === 200) {
-                    setVideos((prev) =>
-                        prev.filter((video) => video.id !== videoId)
+                    setVideos(prev =>
+                        prev.filter(video => video.id !== videoId)
                     )
                 }
             } catch (error) {
@@ -76,7 +76,7 @@ export default function Home() {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-full">
-                    {videos.map((video) => (
+                    {videos.map(video => (
                         <VideoCard
                             key={video.id}
                             video={video}

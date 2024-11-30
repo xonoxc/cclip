@@ -114,8 +114,8 @@ export default function SignUp() {
                                     id="email"
                                     value={credentials.emailAddress}
                                     className="rounded-xl"
-                                    onChange={(e) =>
-                                        setCredentials((prev) => ({
+                                    onChange={e =>
+                                        setCredentials(prev => ({
                                             ...prev,
                                             emailAddress: e.target.value,
                                         }))
@@ -133,8 +133,8 @@ export default function SignUp() {
                                         id="password"
                                         value={credentials.password}
                                         className="rounded-xl"
-                                        onChange={(e) =>
-                                            setCredentials((prev) => ({
+                                        onChange={e =>
+                                            setCredentials(prev => ({
                                                 ...prev,
                                                 password: e.target.value,
                                             }))
@@ -175,7 +175,7 @@ export default function SignUp() {
                                 <Input
                                     id="code"
                                     value={code}
-                                    onChange={(e) => setCode(e.target.value)}
+                                    onChange={e => setCode(e.target.value)}
                                     placeholder="Enter verification code"
                                     required
                                 />

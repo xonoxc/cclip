@@ -70,8 +70,8 @@ export default function SocialShare() {
         if (!imageRef.current) return
 
         fetch(imageRef.current.src)
-            .then((response) => response.blob())
-            .then((blob) => {
+            .then(response => response.blob())
+            .then(blob => {
                 const url = window.URL.createObjectURL(blob)
                 const link = document.createElement("a")
                 link.href = url
@@ -123,7 +123,7 @@ export default function SocialShare() {
                             <div className="form-control">
                                 <Select
                                     value={selectedFormat}
-                                    onValueChange={(value) =>
+                                    onValueChange={value =>
                                         setSelectedFormat(value as SocialFormat)
                                     }
                                 >
@@ -132,7 +132,7 @@ export default function SocialShare() {
                                     </SelectTrigger>
                                     <SelectContent className="bg-[#161717] border-gray-700">
                                         {Object.keys(socialFormats).map(
-                                            (format) => (
+                                            format => (
                                                 <SelectItem
                                                     key={format}
                                                     value={format}

@@ -75,7 +75,7 @@ export const BackgroundBeamsWithCollision = ({
                 className
             )}
         >
-            {beams.map((beam) => (
+            {beams.map(beam => (
                 <CollisionMechanism
                     key={beam.initialX + "beam-idx"}
                     beamOptions={beam}
@@ -169,7 +169,7 @@ const CollisionMechanism = React.forwardRef<
             }, 2000)
 
             setTimeout(() => {
-                setBeamKey((prevKey) => prevKey + 1)
+                setBeamKey(prevKey => prevKey + 1)
             }, 2000)
         }
     }, [collision])
@@ -245,7 +245,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
             ></motion.div>
-            {spans.map((span) => (
+            {spans.map(span => (
                 <motion.span
                     key={span.id}
                     initial={{ x: span.initialX, y: span.initialY, opacity: 1 }}

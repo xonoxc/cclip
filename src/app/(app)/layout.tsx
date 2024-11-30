@@ -75,7 +75,7 @@ export default function AppLayout({
                 </div>
                 <nav className="mt-8">
                     <ul className="space-y-2 px-4">
-                        {sidebarItems.map((item) => (
+                        {sidebarItems.map(item => (
                             <li key={item.href}>
                                 <Link
                                     href={item.href}

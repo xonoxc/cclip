@@ -40,7 +40,7 @@ export default function VideoUpload() {
 
         try {
             const response = await axios.post("/api/video-upload", formData, {
-                onUploadProgress: (progressEvent) => {
+                onUploadProgress: progressEvent => {
                     const percentCompleted = Math.round(
                         (progressEvent.loaded * 100) / progressEvent.total!
                     )
@@ -84,9 +84,7 @@ export default function VideoUpload() {
                                         id="title"
                                         type="text"
                                         value={title}
-                                        onChange={(e) =>
-                                            setTitle(e.target.value)
-                                        }
+                                        onChange={e => setTitle(e.target.value)}
                                         className="pl-8 bg-[#161717] border-gray-700 text-gray-300 focus:border-gray-600 focus:ring-gray-600"
                                         placeholder="Enter video title"
                                         required
@@ -106,7 +104,7 @@ export default function VideoUpload() {
                                         id="video-file"
                                         type="file"
                                         accept="video/*"
-                                        onChange={(e) =>
+                                        onChange={e =>
                                             setFile(e.target.files?.[0] || null)
                                         }
                                         className="pl-8 bg-[#161717] border-gray-700 text-gray-300 focus:border-gray-600 focus:ring-gray-600 file:bg-gray-[#cccccc] file:text-white file:border-0 file:rounded-md "
@@ -127,7 +125,7 @@ export default function VideoUpload() {
                                 <Textarea
                                     id="description"
                                     value={description}
-                                    onChange={(e) =>
+                                    onChange={e =>
                                         setDescription(e.target.value)
                                     }
                                     className="pl-8 min-h-[100px] bg-[#161717] border-gray-700 text-gray-300 focus:border-gray-600 focus:ring-gray-600"

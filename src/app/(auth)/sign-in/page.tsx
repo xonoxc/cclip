@@ -89,8 +89,8 @@ export default function SignIn() {
                                 id="email"
                                 value={credentials.emailAddress}
                                 className="rounded-xl"
-                                onChange={(e) =>
-                                    setCredentials((prev) => ({
+                                onChange={e =>
+                                    setCredentials(prev => ({
                                         ...prev,
                                         emailAddress: e.target.value,
                                     }))
@@ -106,8 +106,8 @@ export default function SignIn() {
                                     id="password"
                                     value={credentials.password}
                                     className="rounded-xl"
-                                    onChange={(e) =>
-                                        setCredentials((prev) => ({
+                                    onChange={e =>
+                                        setCredentials(prev => ({
                                             ...prev,
                                             password: e.target.value,
                                         }))

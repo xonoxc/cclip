@@ -1,4 +1,3 @@
-import { Image } from "lucide-react"
 import Logo from "@/components/Logo"
 
 export default function Header() {
