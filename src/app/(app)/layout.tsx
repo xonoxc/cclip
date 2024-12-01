@@ -14,9 +14,8 @@ import {
     X,
 } from "lucide-react"
 import Logo from "@/components/Logo"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage, Button } from "@/components/ui"
 
 const sidebarItems = [
     { href: "/home", icon: LayoutDashboardIcon, label: "Home Page" },

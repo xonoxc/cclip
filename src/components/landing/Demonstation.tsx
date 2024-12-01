@@ -22,7 +22,7 @@ const steps = [
     },
 ]
 
-export default function Component() {
+export default function Demonstation() {
     return (
         <section className="py-20 bg-gradient-to-b from-black via-[#161717] to-[#161717] text-white">
             <div className="container mx-auto px-4">

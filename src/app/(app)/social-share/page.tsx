@@ -2,26 +2,24 @@
 
 import React, { useState, useEffect, useRef } from "react"
 import { CldImage } from "next-cloudinary"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { socialFormats, SocialFormat } from "@/types/socialFormats"
+import { MessagesSquare, X } from "lucide-react"
 import {
+    Button,
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    Input,
+    ScrollArea,
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
-import { socialFormats, SocialFormat } from "@/types/socialFormats"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogDescription,
-    DialogFooter,
-} from "@/components/ui/dialog"
-import { MessagesSquare, X } from "lucide-react"
+} from "@/components/ui"
 
 export default function SocialShare() {
     const [uploadedImage, setUploadedImage] = useState<string | null>(null)

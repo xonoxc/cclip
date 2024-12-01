@@ -1,12 +1,14 @@
 "use client"
 
-import ContactSection from "@/components/landing/ContactSection"
-import HowItWorksSection from "@/components/landing/Demonstation"
-import FeaturesSection from "@/components/landing/FeaturesSection"
-import Footer from "@/components/landing/Footer"
-import Header from "@/components/landing/Header"
-import HeroSection from "@/components/landing/HeroSection"
-import PricingSection from "@/components/landing/PricingSection"
+import {
+    FeaturesSection,
+    Header,
+    HeroSection,
+    Demonstation,
+    PricingSection,
+    ContactSection,
+    Footer,
+} from "@/components/landing"
 
 export default function LandingPage() {
     return (
@@ -15,7 +17,7 @@ export default function LandingPage() {
             <main>
                 <HeroSection />
                 <FeaturesSection />
-                <HowItWorksSection />
+                <Demonstation />
                 <PricingSection />
                 <ContactSection />
             </main>

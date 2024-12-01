@@ -3,12 +3,17 @@
 import React, { useCallback, useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
 import { FileVideo, Type, FileText, Upload, Video } from "lucide-react"
+import {
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+    Input,
+    Progress,
+    Textarea,
+} from "@/components/ui"
 
 export default function VideoUpload() {
     const [file, setFile] = useState<File | null>(null)
