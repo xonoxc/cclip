@@ -32,6 +32,7 @@ export default function SignIn() {
         password: "",
     })
     const [error, setError] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const router = useRouter()
 
@@ -41,6 +42,7 @@ export default function SignIn() {
 
     async function submit(e: FormEvent) {
         setError("")
+        setLoading(true)
         e.preventDefault()
         if (!isLoaded) return
 
@@ -65,6 +67,8 @@ export default function SignIn() {
         } catch (err: any) {
             console.error(JSON.stringify(err, null, 2))
             setError(err.errors[0].message)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -139,7 +143,7 @@ export default function SignIn() {
                             type="submit"
                             className="w-full bg-white text-black font-bold rounded-xl"
                         >
-                            Sign In
+                            {loading ? "Signing in..." : "Sign in"}
                         </Button>
                     </form>
                 </CardContent>

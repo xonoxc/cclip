@@ -26,43 +26,50 @@ export default function VideoUpload() {
 
     const MAX_FILE_SIZE = 70 * 1024 * 1024
 
-    const handleSubmit = useCallback(async (e: React.FormEvent) => {
-        console.log("button clicked!")
-        e.preventDefault()
-        if (!file) return
+    const handleSubmit = useCallback(
+        async (e: React.FormEvent) => {
+            e.preventDefault()
+            if (!file) return
 
-        if (file.size > MAX_FILE_SIZE) {
-            alert("File size too large")
-            return
-        }
-
-        setIsUploading(true)
-        const formData = new FormData()
-        formData.append("file", file)
-        formData.append("title", title)
-        formData.append("description", description)
-        formData.append("originalSize", file.size.toString())
-
-        try {
-            const response = await axios.post("/api/video-upload", formData, {
-                onUploadProgress: progressEvent => {
-                    const percentCompleted = Math.round(
-                        (progressEvent.loaded * 100) / progressEvent.total!
-                    )
-                    setUploadProgress(percentCompleted)
-                },
-            })
-            if (response.status === 200) {
-                router.push("/")
-            } else {
-                throw new Error("video upload failed")
+            if (file.size > MAX_FILE_SIZE) {
+                alert("File size too large")
+                return
             }
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setIsUploading(false)
-        }
-    }, [])
+
+            setIsUploading(true)
+            const formData = new FormData()
+            formData.append("file", file)
+            formData.append("title", title)
+            formData.append("description", description)
+            formData.append("originalSize", file.size.toString())
+
+            try {
+                const response = await axios.post(
+                    "/api/video-upload",
+                    formData,
+                    {
+                        onUploadProgress: progressEvent => {
+                            const percentCompleted = Math.round(
+                                (progressEvent.loaded * 100) /
+                                    progressEvent.total!
+                            )
+                            setUploadProgress(percentCompleted)
+                        },
+                    }
+                )
+                if (response.status === 200) {
+                    router.push("/")
+                } else {
+                    throw new Error("video upload failed")
+                }
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setIsUploading(false)
+            }
+        },
+        [file, title, description, router]
+    )
 
     return (
         <div className="w-full flex items-center  justify-center">

@@ -32,6 +32,7 @@ export default function SignUp() {
         password: "",
     })
     const [error, setError] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [pendingVerification, setPendingVerification] =
         useState<boolean>(false)
@@ -44,6 +45,7 @@ export default function SignUp() {
 
     async function submit(e: FormEvent) {
         setError("")
+        setLoading(true)
         e.preventDefault()
         if (!isLoaded) return
 
@@ -64,6 +66,8 @@ export default function SignUp() {
         } catch (err: any) {
             console.error(JSON.stringify(err, null, 2))
             setError(err.errors[0].message)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -166,7 +170,7 @@ export default function SignUp() {
                                 type="submit"
                                 className="w-full  bg-white text-black rounded-xl font-bold"
                             >
-                                Sign Up
+                                {!loading ? "Sign Up" : "Signing Up..."}
                             </Button>
                         </form>
                     ) : (
@@ -176,6 +180,7 @@ export default function SignUp() {
                                 <Input
                                     id="code"
                                     value={code}
+                                    className="rounded-xl"
                                     onChange={e => setCode(e.target.value)}
                                     placeholder="Enter verification code"
                                     required
@@ -186,8 +191,11 @@ export default function SignUp() {
                                     <AlertDescription>{error}</AlertDescription>
                                 </Alert>
                             )}
-                            <Button type="submit" className="w-full rounded-md">
-                                Verify Email
+                            <Button
+                                type="submit"
+                                className="w-full rounded-md bg-white text-black"
+                            >
+                                {!loading ? "Verify" : "Verifying..."}
                             </Button>
                         </form>
                     )}
