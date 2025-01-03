@@ -51,7 +51,7 @@ export default function PricingSection() {
                         <CardContainer key={index} className="w-full">
                             <CardBody className="w-full h-full">
                                 <Card
-                                    className={`w-full h-full bg-black text-white flex flex-col justify-between border-primary`}
+                                    className={`w-full h-full bg-black text-white flex flex-col justify-between border-primary rounded-3xl`}
                                 >
                                     <CardHeader>
                                         <CardItem translateZ="50">
@@ -91,9 +91,9 @@ export default function PricingSection() {
                                         </CardItem>
                                         <CardItem
                                             translateZ="50"
-                                            className="mt-6"
+                                            className="mt-6 flex items-center justify-center  w-full"
                                         >
-                                            <Button className="w-full text-black bg-white hover:bg-white">
+                                            <Button className="w-full text-black bg-white hover:bg-white rounded-xl">
                                                 {plan.name === "Enterprise"
                                                     ? "Contact Sales"
                                                     : "Get Started"}

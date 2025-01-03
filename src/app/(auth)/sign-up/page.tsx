@@ -168,7 +168,7 @@ export default function SignUp() {
                             )}
                             <Button
                                 type="submit"
-                                className="w-full  bg-white text-black rounded-xl font-bold"
+                                className="w-full  bg-white text-black rounded-xl font-bold hover:bg-white"
                             >
                                 {!loading ? "Sign Up" : "Signing Up..."}
                             </Button>
@@ -193,7 +193,7 @@ export default function SignUp() {
                             )}
                             <Button
                                 type="submit"
-                                className="w-full rounded-md bg-white text-black"
+                                className="w-full rounded-xl bg-white text-black hover:bg-white"
                             >
                                 {!loading ? "Verify" : "Verifying..."}
                             </Button>

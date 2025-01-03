@@ -55,7 +55,7 @@ export default function ContactSection() {
                     </div>
                     <Button
                         type="submit"
-                        className="w-full bg-white text-black font-bold"
+                        className="w-full bg-white text-black font-bold rounded-xl hover:bg-white"
                     >
                         Send Message
                     </Button>

@@ -141,7 +141,7 @@ export default function SignIn() {
                         )}
                         <Button
                             type="submit"
-                            className="w-full bg-white text-black font-bold rounded-xl"
+                            className="w-full bg-white text-black font-bold rounded-xl hover:bg-white"
                         >
                             {loading ? "Signing in..." : "Sign in"}
                         </Button>
