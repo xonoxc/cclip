@@ -6,7 +6,14 @@ import { Image, Video, Zap, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
-const features = [
+type Feature = {
+    icon: JSX.Element
+    title: string
+    description: string
+    details: string[]
+}
+
+const features: Feature[] = [
     {
         icon: <Image className="w-8 h-8" />,
         title: "Image Transformation",
@@ -45,7 +52,17 @@ const features = [
     },
 ]
 
-const FeatureCard = ({ feature, index, isActive, onClick }: {}) => {
+const FeatureCard = ({
+    feature,
+    index,
+    isActive,
+    onClick,
+}: {
+    feature: Feature
+    index: number
+    isActive: boolean
+    onClick: () => void
+}) => {
     const controls = useAnimation()
 
     React.useEffect(() => {

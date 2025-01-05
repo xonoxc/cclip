@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import Image from "next/image"
 import {
     Tooltip,
     TooltipContent,
@@ -118,7 +119,7 @@ export default function VideoCard({
                         onError={handlePreviewError}
                     />
                 ) : (
-                    <img
+                    <Image
                         src={getThumbnailUrl(video.publicId)}
                         alt={video.title}
                         className="w-full h-full object-cover rounded-t-xl"
