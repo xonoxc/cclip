@@ -113,16 +113,12 @@ export const CardItem = ({
     translateY?: number | string
     translateZ?: number | string
     rotateX?: number | string
-    rotateY?: number | string
+    rotateY?: number | stReportingObserver
     rotateZ?: number | string
     [key: string]: any
 }) => {
     const ref = useRef<HTMLDivElement>(null)
     const [isMouseEntered] = useMouseEnter()
-
-    useEffect(() => {
-        handleAnimations()
-    }, [isMouseEntered])
 
     const handleAnimations = () => {
         if (!ref.current) return
@@ -132,6 +128,10 @@ export const CardItem = ({
             ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`
         }
     }
+
+    useEffect(() => {
+        handleAnimations()
+    }, [isMouseEntered, handleAnimations])
 
     return (
         <Tag

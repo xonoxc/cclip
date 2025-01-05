@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { FileVideo, Type, FileText, Upload, Video } from "lucide-react"
@@ -24,7 +24,7 @@ export default function VideoUpload() {
 
     const router = useRouter()
 
-    const MAX_FILE_SIZE = 70 * 1024 * 1024
+    const MAX_FILE_SIZE = useMemo(() => 70 * 1024 * 1024, [])
 
     const handleSubmit = useCallback(
         async (e: React.FormEvent) => {
@@ -68,7 +68,7 @@ export default function VideoUpload() {
                 setIsUploading(false)
             }
         },
-        [file, title, description, router]
+        [file, title, description, router, MAX_FILE_SIZE]
     )
 
     return (

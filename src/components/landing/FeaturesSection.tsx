@@ -45,7 +45,7 @@ const features = [
     },
 ]
 
-const FeatureCard = ({ feature, index, isActive, onClick }) => {
+const FeatureCard = ({ feature, index, isActive, onClick }: {}) => {
     const controls = useAnimation()
 
     React.useEffect(() => {

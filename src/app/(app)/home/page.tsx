@@ -28,7 +28,7 @@ export default function Home() {
 
     useEffect(() => {
         fetchVideos()
-    }, [])
+    }, [fetchVideos])
 
     const handleDownload = useCallback((url: string, title: string) => {
         const link = document.createElement("a")
