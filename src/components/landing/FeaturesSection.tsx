@@ -89,7 +89,7 @@ const FeatureCard = ({ feature, index, isActive, onClick }: {}) => {
                     </p>
                     <Button
                         variant="ghost"
-                        className="text-white hover:text-gray-200 p-0 flex items-center group"
+                        className="text-white hover:bg-[#161617] hover:text-white  p-0 flex items-center group"
                     >
                         Learn more
                         <motion.div
@@ -145,7 +145,7 @@ export default function FeaturesSection() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="mt-12 bg-gray-800/30 backdrop-blur-md rounded-2xl overflow-hidden border border-gray-700/50"
+                            className="mt-12 bg-gray-800/10 backdrop-blur-md rounded-2xl overflow-hidden border border-gray-700/50"
                         >
                             <motion.div
                                 initial={{ opacity: 0 }}

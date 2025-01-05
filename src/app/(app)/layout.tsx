@@ -5,22 +5,36 @@ import { useClerk, useUser } from "@clerk/nextjs"
 import { usePathname, useRouter } from "next/navigation"
 import Link from "next/link"
 import {
-    ImageIcon,
     LayoutDashboardIcon,
     LogOutIcon,
     MenuIcon,
     Share2Icon,
     UploadIcon,
-    X,
+    ChevronRight,
 } from "lucide-react"
 import Logo from "@/components/Logo"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage, Button } from "@/components/ui"
 
 const sidebarItems = [
-    { href: "/home", icon: LayoutDashboardIcon, label: "Home Page" },
-    { href: "/social-share", icon: Share2Icon, label: "Social Share" },
-    { href: "/video-upload", icon: UploadIcon, label: "Video Upload" },
+    {
+        href: "/home",
+        icon: LayoutDashboardIcon,
+        label: "Dashboard",
+        badge: "",
+    },
+    {
+        href: "/social-share",
+        icon: Share2Icon,
+        label: "Social Share",
+        badge: "8",
+    },
+    {
+        href: "/video-upload",
+        icon: UploadIcon,
+        label: "Video Upload",
+        badge: "3",
+    },
 ]
 
 export default function AppLayout({
@@ -29,6 +43,7 @@ export default function AppLayout({
     children: React.ReactNode
 }>) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [isCollapsed, setIsCollapsed] = useState(false)
     const pathname = usePathname()
     const router = useRouter()
     const { signOut } = useClerk()
@@ -39,6 +54,8 @@ export default function AppLayout({
     const handleSignOut = async () => {
         await signOut()
     }
+
+    const toggleSidebar = () => setIsCollapsed(!isCollapsed)
 
     useEffect(() => {
         const handleResize = () => {
@@ -53,27 +70,50 @@ export default function AppLayout({
 
     return (
         <div className="flex h-screen bg-black text-white">
-            {/* Sidebar for larger screens */}
             <aside
                 className={cn(
-                    "fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out bg-[#161717]",
+                    "fixed inset-y-0 left-0 z-50 transform transition-all duration-300 ease-in-out bg-[#161717]",
                     "lg:relative lg:translate-x-0",
-                    sidebarOpen ? "translate-x-0" : "translate-x-full"
+                    isCollapsed ? "w-16" : "w-64",
+                    sidebarOpen
+                        ? "translate-x-0"
+                        : "-translate-x-full lg:translate-x-0"
                 )}
             >
                 <div className="flex items-center justify-between p-4">
                     <div className="flex items-center space-x-2">
-                        <ImageIcon className="w-8 h-8" />
+                        {!sidebarOpen && (
+                            <button
+                                onClick={toggleSidebar}
+                                className="hidden lg:block ml-2"
+                            >
+                                <ChevronRight
+                                    className={cn(
+                                        "w-6 h-6 transition-transform duration-300",
+                                        isCollapsed ? "" : "rotate-180"
+                                    )}
+                                />
+                            </button>
+                        )}
                     </div>
-                    <button
-                        onClick={() => setSidebarOpen(false)}
-                        className="lg:hidden"
-                    >
-                        <X className="w-6 h-6" />
-                    </button>
+                    <div className="flex items-center">
+                        {sidebarOpen && (
+                            <button
+                                onClick={toggleSidebar}
+                                className="hidden lg:block ml-2"
+                            >
+                                <ChevronRight
+                                    className={cn(
+                                        "w-6 h-6 transition-transform duration-300",
+                                        isCollapsed ? "" : "rotate-180"
+                                    )}
+                                />
+                            </button>
+                        )}
+                    </div>
                 </div>
                 <nav className="mt-8">
-                    <ul className="space-y-2 px-4">
+                    <ul className="space-y-1 px-4">
                         {sidebarItems.map(item => (
                             <li key={item.href}>
                                 <Link
@@ -82,12 +122,17 @@ export default function AppLayout({
                                         "flex items-center space-x-4 px-4 py-2 rounded-lg transition-colors",
                                         pathname === item.href
                                             ? "bg-black text-white"
-                                            : "hover:bg-black/20"
+                                            : "hover:bg-black/20",
+                                        isCollapsed && "justify-center px-2"
                                     )}
                                     onClick={() => setSidebarOpen(false)}
                                 >
                                     <item.icon className="w-5 h-5" />
-                                    <span>{item.label}</span>
+                                    {!isCollapsed && (
+                                        <span className="test-xs">
+                                            {item.label}
+                                        </span>
+                                    )}
                                 </Link>
                             </li>
                         ))}
@@ -97,10 +142,18 @@ export default function AppLayout({
                     <div className="absolute bottom-0 left-0 right-0 p-4">
                         <Button
                             onClick={handleSignOut}
-                            className="w-full bg-transparent text-white border-2 border-white hover:bg-white hover:text-black transition-colors"
+                            className={cn(
+                                "bg-transparent text-white border-2 border-white hover:bg-white hover:text-black transition-colors",
+                                isCollapsed ? "w-10 p-2" : "w-full"
+                            )}
                         >
-                            <LogOutIcon className="mr-2 h-5 w-5" />
-                            Sign Out
+                            <LogOutIcon
+                                className={cn(
+                                    "h-5 w-5",
+                                    !isCollapsed && "mr-2"
+                                )}
+                            />
+                            {!isCollapsed && "Sign Out"}
                         </Button>
                     </div>
                 )}
@@ -109,7 +162,7 @@ export default function AppLayout({
             {/* Main content */}
             <div className="flex-1 flex flex-col min-h-screen overflow-hidden">
                 {/* Navbar */}
-                <header className="bg-[#161717] shadow-md">
+                <header className="bg-black shadow-md">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between items-center h-16">
                             <div className="flex items-center">
@@ -156,7 +209,6 @@ export default function AppLayout({
                     </div>
                 </header>
 
-                {/* Page content */}
                 <main className="flex-1 overflow-y-auto bg-black">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                         {children}
@@ -164,12 +216,13 @@ export default function AppLayout({
                 </main>
             </div>
 
-            {/* Overlay for mobile sidebar */}
             {sidebarOpen && (
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
                     onClick={() => setSidebarOpen(false)}
-                ></div>
+                >
+                    open
+                </div>
             )}
         </div>
     )

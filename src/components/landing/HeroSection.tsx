@@ -24,7 +24,7 @@ export default function HeroSection() {
                 <div className="flex items-center justify-center">
                     <ShimmerButton
                         onClick={() => router.push("/sign-in")}
-                        className="text-white rounded-2xl border-2 border-[#0f1014] text-xs"
+                        className="text-white rounded-2xl border-2 border-[#0f1014] text-xs px-4"
                     >
                         Start Transforming Now
                         <ArrowRight className="ml-2 h-5 w-5" />

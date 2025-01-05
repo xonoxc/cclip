@@ -59,25 +59,6 @@ export default function Footer() {
                             Empowering your digital journey with cutting-edge
                             SaaS solutions.
                         </p>
-                        <form
-                            onSubmit={handleSubmit}
-                            className="flex space-x-2"
-                        >
-                            <Input
-                                type="email"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                                className="bg-black border-gray-700 text-white placeholder-gray-400 rounded-xl"
-                                required
-                            />
-                            <Button
-                                type="submit"
-                                className="bg-white hover:bg-white text-black rounded-xl"
-                            >
-                                Subscribe
-                            </Button>
-                        </form>
                     </div>
                     {footerLinks.map(column => (
                         <div key={column.title}>

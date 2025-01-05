@@ -102,9 +102,9 @@ export default function VideoCard({
     }
 
     return (
-        <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg bg-[#161717] border-1">
+        <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg bg-[#161617] border border-white/10 rounded-xl">
             <div
-                className="relative aspect-video"
+                className="relative aspect-video group"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -114,46 +114,47 @@ export default function VideoCard({
                         autoPlay
                         muted
                         loop
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-t-xl"
                         onError={handlePreviewError}
                     />
                 ) : (
                     <img
                         src={getThumbnailUrl(video.publicId)}
                         alt={video.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-t-xl"
                     />
                 )}
-                <Badge className="absolute bottom-2 right-2 bg-background/80 text-foreground">
+                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Badge className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white">
                     <Clock className="w-3 h-3 mr-1" />
                     {formatDuration(Number(video.duration))}
                 </Badge>
             </div>
-            <CardHeader>
-                <CardTitle className="text-md line-clamp-1 text-white">
+            <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-semibold line-clamp-1 text-white">
                     {video.title}
                 </CardTitle>
             </CardHeader>
-            <CardContent>
-                <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+            <CardContent className="space-y-4">
+                <p className="text-sm text-white/70 line-clamp-2">
                     {video.description}
                 </p>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-xs text-white/50">
                     Uploaded {dayjs(video.createdAt).fromNow()}
                 </p>
                 {video.compressedSize.toString() !== "undefined" ? (
                     <>
-                        <div className="grid grid-cols-2 gap-4 text-sm mb-4 text-white">
+                        <div className="grid grid-cols-2 gap-4 text-sm text-white">
                             <TooltipProvider>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <div className="flex items-center">
-                                            <FileUp className="w-4 h-4 mr-2 text-primary" />
+                                        <div className="flex items-center bg-white/5 rounded-lg p-2">
+                                            <FileUp className="w-4 h-4 mr-2 text-white" />
                                             <div>
-                                                <div className="font-semibold">
+                                                <div className="font-medium">
                                                     Original
                                                 </div>
-                                                <div>
+                                                <div className="text-white/70">
                                                     {formatSize(
                                                         video.originalSize.toString()
                                                     )}
@@ -169,13 +170,13 @@ export default function VideoCard({
                             <TooltipProvider>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <div className="flex items-center">
-                                            <FileDown className="w-4 h-4 mr-2 text-secondary" />
+                                        <div className="flex items-center bg-white/5 rounded-lg p-2">
+                                            <FileDown className="w-4 h-4 mr-2 text-white" />
                                             <div>
-                                                <div className="font-semibold">
+                                                <div className="font-medium">
                                                     Compressed
                                                 </div>
-                                                <div>
+                                                <div className="text-white/70">
                                                     {formatSize(
                                                         video.compressedSize.toString()
                                                     )}
@@ -205,17 +206,22 @@ export default function VideoCard({
                                     video.compressedSize,
                                     video.originalSize
                                 )}
-                                className="h-2"
+                                className="h-2 bg-white/10"
                             />
                         </div>
                     </>
                 ) : (
-                    <Badge variant="destructive">Cannot compress</Badge>
+                    <Badge
+                        variant="destructive"
+                        className="bg-white/10 text-white"
+                    >
+                        Cannot compress
+                    </Badge>
                 )}
             </CardContent>
-            <CardFooter className="flex items-center justify-center gap-2">
+            <CardFooter className="flex items-center justify-between gap-2 pt-4">
                 <Button
-                    className="w-full bg-white text-black hover:bg-white"
+                    className="flex-1 bg-white text-black hover:bg-white/90 transition-colors"
                     onClick={() =>
                         onDownload(getFullVideoUrl(video.publicId), video.title)
                     }
@@ -224,12 +230,13 @@ export default function VideoCard({
                     Download
                 </Button>
 
-                <button
+                <Button
                     onClick={() => onDelete(video.id, video.publicId)}
-                    className="bg-white text-black p-1 rounded-md"
+                    className="bg-white/10 text-white hover:bg-white/20 transition-colors p-2"
+                    size="icon"
                 >
-                    <Trash />
-                </button>
+                    <Trash className="w-4 h-4" />
+                </Button>
             </CardFooter>
         </Card>
     )

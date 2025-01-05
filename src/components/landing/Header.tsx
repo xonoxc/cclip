@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation"
 const navItems = [
     { title: "Features", href: "#features" },
     { title: "Pricing", href: "#pricing" },
-    { title: "Resources", href: "#resources" },
     { title: "Contact", href: "#contact" },
 ]
 
@@ -122,7 +121,7 @@ export default function Header() {
                     transition={{ duration: 0.3 }}
                     className="md:hidden overflow-hidden"
                 >
-                    <nav className="bg-gray-900/95 backdrop-blur-md px-4 py-2">
+                    <nav className="bg-transparent backdrop-blur-md px-4 py-2">
                         {navItems.map((item, index) => (
                             <motion.div
                                 key={item.title}
@@ -153,7 +152,7 @@ export default function Header() {
                         >
                             <Button
                                 variant="outline"
-                                className="w-full justify-center text-gray-300 hover:text-white hover:bg-white/10 border-gray-700 transition-colors duration-200"
+                                className="w-full justify-center  hover:text-white hover:bg-white/10 border-gray-700 transition-colors duration-200 text-black"
                             >
                                 Log in
                             </Button>
