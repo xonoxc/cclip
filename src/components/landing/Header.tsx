@@ -153,6 +153,7 @@ export default function Header() {
                             <Button
                                 variant="outline"
                                 className="w-full justify-center  hover:text-white hover:bg-white/10 border-gray-700 transition-colors duration-200 text-black"
+                                onClick={() => router.push("/sign-in")}
                             >
                                 Log in
                             </Button>
