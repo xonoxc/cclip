@@ -119,7 +119,7 @@ export default function VideoCard({
                         onError={handlePreviewError}
                     />
                 ) : (
-                    <Image
+                    <img
                         src={getThumbnailUrl(video.publicId)}
                         alt={video.title}
                         className="w-full h-full object-cover rounded-t-xl"
