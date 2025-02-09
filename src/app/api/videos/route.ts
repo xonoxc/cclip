@@ -29,6 +29,9 @@ export async function GET(_: NextRequest) {
 
         return NextResponse.json(videos)
     } catch (error) {
+        if (error instanceof Error) {
+            console.error("Error fetching videos:", error.message)
+        }
         return NextResponse.json(
             { error: "Error fetching videos" },
             { status: 500 }

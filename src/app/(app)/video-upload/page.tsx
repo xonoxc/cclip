@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useCallback, useMemo, useState } from "react"
+import React, { useCallback, useMemo, useRef, useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { FileVideo, Type, FileText, Upload, Video } from "lucide-react"
+import { FileVideo, Type, FileText, Upload, Video, X } from "lucide-react"
 import {
     Button,
     Card,
@@ -22,9 +22,17 @@ export default function VideoUpload() {
     const [isUploading, setIsUploading] = useState<boolean>(false)
     const [uploadProgress, setUploadProgress] = useState<number>(0)
 
+    const fileInputRef = useRef<HTMLInputElement | null>(null)
     const router = useRouter()
 
-    const MAX_FILE_SIZE = useMemo(() => 70 * 1024 * 1024, [])
+    const MAX_FILE_SIZE = useMemo(() => 30 * 1024 * 1024, [])
+
+    const handleRemoveClick = useCallback(() => {
+        setFile(null)
+        if (fileInputRef.current) {
+            fileInputRef.current.value = ""
+        }
+    }, [])
 
     const handleSubmit = useCallback(
         async (e: React.FormEvent) => {
@@ -110,18 +118,28 @@ export default function VideoUpload() {
                                 >
                                     Video File
                                 </label>
-                                <div className="relative">
-                                    <FileVideo className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-                                    <Input
-                                        id="video-file"
-                                        type="file"
-                                        accept="video/*"
-                                        onChange={e =>
-                                            setFile(e.target.files?.[0] || null)
-                                        }
-                                        className="pl-8 bg-[#161717] border-gray-700 text-gray-300 focus:border-gray-600 focus:ring-gray-600 file:bg-gray-[#cccccc] file:text-white file:border-0 file:rounded-md "
-                                        required
-                                    />
+                                <div className="flex items-center gap-2">
+                                    <div className="relative w-full">
+                                        <FileVideo className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                                        <Input
+                                            id="video-file"
+                                            type="file"
+                                            ref={fileInputRef}
+                                            accept="video/*"
+                                            onChange={e =>
+                                                setFile(
+                                                    e.target.files?.[0] || null
+                                                )
+                                            }
+                                            className="pl-8 bg-[#161717] border-gray-700 text-gray-300 focus:border-gray-600 focus:ring-gray-600 file:bg-gray-[#cccccc] file:text-white file:border-0 file:rounded-md "
+                                            required={!file}
+                                        />
+                                    </div>
+                                    {file && (
+                                        <Button onClick={handleRemoveClick}>
+                                            <X className="text-gray-500" />
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -151,18 +169,22 @@ export default function VideoUpload() {
                                     value={uploadProgress}
                                     className="w-full bg-white"
                                 />
-                                <p className="text-sm text-black text-center">
+                                <p className="text-sm text-white text-center">
                                     {uploadProgress}% uploaded
                                 </p>
                             </div>
                         )}
                         <Button
                             type="submit"
-                            className="w-full bg-white text-black font-bold hover:bg-white  disabled:bg-gray-50 disabled:text-black"
+                            className="w-full bg-white text-black font-bold hover:bg-white  disabled:bg-gray-50 disabled:text-black p-5 rounded-xl"
                             disabled={isUploading}
                         >
                             {isUploading ? (
-                                <>Uploading...</>
+                                uploadProgress === 100 ? (
+                                    <> Finshing Up...</>
+                                ) : (
+                                    <>Uploading...</>
+                                )
                             ) : (
                                 <>
                                     <Upload className="mr-2 h-4 w-4" />

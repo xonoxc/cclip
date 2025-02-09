@@ -35,6 +35,8 @@ export async function POST(request: NextRequest) {
                 const uploadStream = cloudinary.uploader.upload_stream(
                     {
                         folder: "cclip",
+                        eager: true,
+                        eager_async: true,
                     },
                     (error, result) => {
                         if (error) reject(error)
