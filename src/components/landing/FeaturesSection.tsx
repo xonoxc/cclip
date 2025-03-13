@@ -42,7 +42,7 @@ const features: Feature[] = [
         icon: <Zap className="w-8 h-8" />,
         title: "Batch Processing",
         description:
-            "Transform multiple files at once, saving you time and effort.",
+            "Transform multiple files at once, saving you time and effort and ensuring consistency.",
         details: [
             "Parallel processing for speed",
             "Custom workflow automation",
@@ -63,60 +63,36 @@ const FeatureCard = ({
     isActive: boolean
     onClick: () => void
 }) => {
-    const controls = useAnimation()
-
-    React.useEffect(() => {
-        controls.start({
-            scale: isActive ? 1.03 : 1,
-            transition: { duration: 0.3, ease: "easeInOut" },
-        })
-    }, [isActive, controls])
-
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            transition={{ delay: 0.2 + index * 0.1 }}
+            className="text-center"
+            onClick={onClick}
         >
             <motion.div
-                animate={controls}
+                whileHover={{ scale: 1.05 }}
                 className={cn(
-                    "group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-[#161617] p-0.5",
-                    isActive ? "ring-2 ring-white/30" : ""
+                    "bg-zinc-900/50 rounded-xl p-6 backdrop-blur-lg border border-white/10 transition-colors hover:border-white/20",
+                    isActive ? "border-white/30" : ""
                 )}
-                onClick={onClick}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
             >
-                <div className="bg-[#161617] rounded-xl p-6 h-full transition-all duration-300">
-                    <motion.div
-                        className="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center mb-6"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6, ease: "easeInOut" }}
-                    >
-                        {React.cloneElement(feature.icon, {
-                            className: "text-white",
-                        })}
-                    </motion.div>
-                    <h3 className="text-2xl font-semibold text-white mb-3">
-                        {feature.title}
-                    </h3>
-                    <p className="text-gray-400 leading-relaxed mb-4">
-                        {feature.description}
-                    </p>
-                    <Button
-                        variant="ghost"
-                        className="text-white hover:bg-[#161617] hover:text-white  p-0 flex items-center group"
-                    >
-                        Learn more
-                        <motion.div
-                            className="ml-2"
-                            whileHover={{ x: 5 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <ArrowRight className="w-4 h-4" />
-                        </motion.div>
-                    </Button>
+                <div className="mb-2 text-white/70 flex justify-center">
+                    {React.cloneElement(feature.icon, {
+                        className: "w-6 h-6",
+                    })}
+                </div>
+                <motion.div
+                    className="text-2xl font-bold mb-1"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                >
+                    {feature.title}
+                </motion.div>
+                <div className="text-sm text-zinc-400">
+                    {feature.description}
                 </div>
             </motion.div>
         </motion.div>
