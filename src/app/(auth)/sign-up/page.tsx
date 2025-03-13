@@ -97,8 +97,8 @@ export default function SignUp() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-black">
-            <Card className="w-full max-w-md bg-black text-white border-none">
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#161617] to-black">
+            <Card className="w-full max-w-md bg-transparent text-white border-none">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center">
                         <div className="w-full  mt-3 flex items-center justify-center">
@@ -118,7 +118,8 @@ export default function SignUp() {
                                     type="email"
                                     id="email"
                                     value={credentials.emailAddress}
-                                    className="rounded-xl"
+                                    className="rounded-xl p-6"
+                                    placeholder="enter email"
                                     onChange={e =>
                                         setCredentials(prev => ({
                                             ...prev,
@@ -137,7 +138,8 @@ export default function SignUp() {
                                         }
                                         id="password"
                                         value={credentials.password}
-                                        className="rounded-xl"
+                                        className="rounded-xl p-6"
+                                        placeholder="enter password"
                                         onChange={e =>
                                             setCredentials(prev => ({
                                                 ...prev,
@@ -168,7 +170,7 @@ export default function SignUp() {
                             )}
                             <Button
                                 type="submit"
-                                className="w-full  bg-white text-black rounded-xl font-bold hover:bg-white"
+                                className="w-full  bg-white text-black rounded-xl font-bold hover:bg-white py-6"
                             >
                                 {!loading ? "Sign Up" : "Signing Up..."}
                             </Button>
@@ -180,7 +182,7 @@ export default function SignUp() {
                                 <Input
                                     id="code"
                                     value={code}
-                                    className="rounded-xl"
+                                    className="rounded-xl py-6"
                                     onChange={e => setCode(e.target.value)}
                                     placeholder="Enter verification code"
                                     required
@@ -193,7 +195,7 @@ export default function SignUp() {
                             )}
                             <Button
                                 type="submit"
-                                className="w-full rounded-xl bg-white text-black hover:bg-white"
+                                className="w-full  bg-white text-black rounded-xl font-bold hover:bg-white py-6"
                             >
                                 {!loading ? "Verify" : "Verifying..."}
                             </Button>

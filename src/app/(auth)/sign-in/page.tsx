@@ -73,8 +73,8 @@ export default function SignIn() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-black">
-            <Card className="w-full max-w-md border-none bg-black text-white">
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#161617] to-black">
+            <Card className="w-full max-w-md border-none bg-transparent text-white">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center">
                         <div className="w-full  mt-3 flex items-center justify-center">
@@ -93,7 +93,8 @@ export default function SignIn() {
                                 type="email"
                                 id="email"
                                 value={credentials.emailAddress}
-                                className="rounded-xl"
+                                className="rounded-xl p-6"
+                                placeholder="enter email address"
                                 onChange={e =>
                                     setCredentials(prev => ({
                                         ...prev,
@@ -110,7 +111,8 @@ export default function SignIn() {
                                     type={showPassword ? "text" : "password"}
                                     id="password"
                                     value={credentials.password}
-                                    className="rounded-xl"
+                                    className="rounded-xl p-6"
+                                    placeholder="enter password"
                                     onChange={e =>
                                         setCredentials(prev => ({
                                             ...prev,
@@ -141,7 +143,7 @@ export default function SignIn() {
                         )}
                         <Button
                             type="submit"
-                            className="w-full bg-white text-black font-bold rounded-xl hover:bg-white"
+                            className="w-full  bg-white text-black rounded-xl font-bold hover:bg-white py-6"
                         >
                             {loading ? "Signing in..." : "Sign in"}
                         </Button>
